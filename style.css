@@ -9,6 +9,7 @@ body {
     height: 200vh;
     display: flex;
     flex-direction: column;
+    font-family: Georgia, serif;
 }
 .Cabecera{
     background-color: #1a202c;
@@ -60,18 +61,21 @@ body {
 .nameButton {
     width: 5%;
     align-self: center;
-    background-color: #0ec65e;
-    border: none;
+    display: flex;
+    justify-content: center;
+    background-color: #f3fc7b;
+    border-color: rgb(156, 156, 3);
+    border-style: solid;
     border-radius: 5px;
     padding: 10px 10px 10px 10px;
-    color: #ffffff;
+    color: #000000;
     font-size: 1rem;
     cursor: pointer;
     transition: 0.3s;
 }
 
 .nameButton:hover {
-    background-color: #4c980e;
+    background-color: #bbcc23;
     transition: 0.3s;
 
 }
@@ -89,12 +93,12 @@ body {
 
 .memory-game {
     margin-top: 100px;
-    width: 700px;
-    height: 550px;
+    width: 100%;
+    height: 100%;
     margin-top:15px;
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
-    margin-left: 100px;
     perspective: 1000px;
     align-self: center;
     
@@ -107,10 +111,12 @@ h2 {
 #contador{
     margin-top: 20px;
     font-size:xx-large;
-    background-color: #0ec65e;
+    background-color: #f3fc7b;
+    border-style: solid;
+    border-color:rgb(255, 255, 0);
     display: flex;
     justify-content: center;
-    width: 200px;
+    width: 100%;
     border-radius: 5px;
 
 }
@@ -118,9 +124,13 @@ h2 {
 #Timer {
     margin-top: 20px;
     font-size:xx-large;
-    background-color: #0ec65e;
+    background-color: #f3fc7b;
     display: flex;
+    border-style: solid;
+    border-color: yellow;
     justify-content: center;
+    align-self: center;
+    justify-self: center;
     width: 200px;
     border-radius: 5px;
 }
@@ -133,19 +143,20 @@ h2 {
     align-items: center;
     background-color: #1a202c;
     margin-top: 20px;
-    padding-left: 100px;
-    padding-right: 100px;
     width: 50%;
     border-radius: 10px;
     border-color: yellow;
     border-style: solid;
-    height: 65%;
+    height: 70%;
 }
 
 .Conteo{
+    display: flex;
+    flex-direction: column;
     margin-top: 10px;
     align-self: center;
     align-content: center;
+    justify-content: center;
 }
 .memory-card {
     width: calc(20%);
@@ -206,6 +217,21 @@ table, th, td {
     border-style: solid;
     border-color: yellow;
     color: rgb(255, 255, 255);
+    align-self: center;
+}
+
+.LeaderBoard{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+}
+.TablaP {
+    
+    display: flex;
+    justify-items: center;
+    justify-content: center;
+    margin:auto;
 }
 
 th , td {

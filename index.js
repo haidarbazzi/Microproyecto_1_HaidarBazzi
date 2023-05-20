@@ -2,11 +2,14 @@ const cards = document.querySelectorAll('.memory-card'); /*Almacenamos en un arr
 const button = document.getElementById('nameButton');
 const input = document.getElementById('nameInput');
 const restart = document.getElementById('restartButton');
+const namesBef = [];
+const namesAft = [];
+
 
 let minutes = 0;
 let seconds = 0;
+
 /* Declaracion de variables */
-localStorage.clear();
 
 let intervalo;
 let hasFlippedCard = false; 
@@ -19,17 +22,64 @@ let secondsTakenByPlayer = 0;
 const totalSeconds = 180;
 let alreadyStored = true;
 let seReinicio = false;
-
 let lockGame = true;
+
+
+function FinishResults(){
+    clearInterval(intervalo);
+    alreadyStored = false;
+    let points = calculatePoints();
+    localStorage.setItem(currentPlayer, points);
+    retrieveInfo(namesAft);
+    lockGame=true;
+}
+
+
+function BubbleSort(arr){
+
+    for(let i = 0; i < arr.length; i++){
+
+        for(let j = 0; j < arr.length - i - 1; j++){
+
+            if(arr[j + 1].puntaje > arr[j].puntaje){
+
+                [arr[j + 1],arr[j]] = [arr[j],arr[j + 1]]
+            }
+        }
+    };
+    return arr;
+};
+
+function retrieveInfo(names){
+    for (i = 0; i <localStorage.length ; i++){
+        let key = localStorage.key(i);
+        let value = localStorage.getItem(key);
+        let obj = {name: key, puntaje: value};
+        names.push(obj);
+
+    }
+    names = BubbleSort(names);
+    if(names.length < 6){
+    for(i = 0; i<names.length;i++){
+        document.getElementById(i).innerHTML = names[i].name;
+        document.getElementById(i+"-points").innerHTML = names[i].puntaje
+    }
+    } else{
+        for(i = 0; i < 5;i++){
+            document.getElementById(i).innerHTML = names[i].name;
+            document.getElementById(i+"-points").innerHTML = names[i].puntaje
+    }
+    }
+    names = [];
+}
+
+retrieveInfo(namesBef)
+console.log(localStorage)
 
 function calculatePoints(){
     let timeLeft = 180 - secondsTakenByPlayer;
     let points = 8*(timeLeft/totalSeconds);
     return points;
-}
-function storeUser(){
-    let points = calculatePoints();
-    localStorage.setItem(currentPlayer, points);
 }
 
 function actualizarTimer(){
@@ -47,47 +97,23 @@ function actualizarTimer(){
             document.getElementById('Timer').innerHTML = 'Timer: ' + minutes + ":" + "0"+seconds;
         }
         if(counter > 7 && alreadyStored){
-            clearInterval(intervalo);
-            alreadyStored = false;
-            let points = calculatePoints();
-            localStorage.setItem(currentPlayer, points);
-            console.log(localStorage)
-            lockGame=true;
+            FinishResults();
         }
         if (secondsTakenByPlayer > 179 && alreadyStored){
-            clearInterval(intervalo);
-            alreadyStored = false;
-            let points = calculatePoints();
-            localStorage.setItem(currentPlayer, points);
-            lockGame=true;
+            FinishResults();
         }
     }
-    else {
-        clearInterval(intervalo);
-        alreadyStored = false;
-        let points = calculatePoints();
-            localStorage.setItem(currentPlayer, points);
-        lockGame = true;
-    }
+    
 }
 
 function timer() {
     if(!lockGame){
         intervalo = setInterval(actualizarTimer, 1000);
         if (counter > 7 && alreadyStored){
-            clearInterval(intervalo);
-            alreadyStored = false;
-            let points = calculatePoints();
-            localStorage.setItem(currentPlayer, points);
-            console.log(localStorage);
-            lockGame=true;
+            FinishResults();
         } 
         else if (secondsTakenByPlayer > 179 && alreadyStored){
-            clearInterval(intervalo);
-            alreadyStored = false;
-            let points = calculatePoints();
-            localStorage.setItem(currentPlayer, points);
-            lockGame = true;
+            FinishResults();
         }
     }
 }

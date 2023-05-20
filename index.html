@@ -7,7 +7,9 @@
     <title>Memory Unimet</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
     <section class="Cabecera">
         <h1 id="Titulo_Principal">MEMORY UNIMET</h1>
         <h3 id="Titulo_Secundario"> Un divertido juego de memoria inspirado en la UNIMET!</h3>
@@ -15,8 +17,9 @@
 
     <section class="Input-principal">
         <input id="nameInput" type="text"class="nameInput" placeholder="Ingrese su nombre para poder jugar!"/>
-        <button type="button" class="nameButton" id="nameButton">Aceptar</button>
+        <button type="button" class="nameButton" id="nameButton"><b>Aceptar</b></button>
     </section>
+
     <div>
         <h3 id="CuentaRegresiva"> Bienvenido! </h3>
     </div>
@@ -101,17 +104,22 @@
                   <img class="front-face" src="./Images/Ceis_unimet.png" alt="CEIS" />
                   <img class="back-face" src="./Images/Unimet_logo.png" alt="Unimet_Logo" />
               </div>
+
         </section>
+
         <section class="Conteo">
-            <p id="contador"> Puntaje: 0</p>
+            <p id="contador"> Pares Hallados: 0</p>
             <p id="Timer"> Timer 0:00 </p>
         </section>
+
         <div class="Restart">
-            <button type="button" id="restartButton" class="nameButton">Reiniciar</button>
+            <button type="button" id="restartButton" class="nameButton"><b>Reiniciar</b></button>
         </div>
+
         <div class="LeaderBoard">
-            <h2>PUNTAJES:</h2>
-            <table>
+
+            <h2>TOP 5 PUNTAJES:</h2>
+            <table class="TablaP">
                 <tr>
                     <th>
                         Nombre
@@ -121,43 +129,43 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        Haidar
+                    <td id="0">
+                        ---
                     </td>
-                    <td>
-                        17
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Haidar
-                    </td>
-                    <td>
-                        17
+                    <td id="0-points">
+                        0
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        Haidar
+                    <td id="1">
+                        ---
                     </td>
-                    <td>
-                        17
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        Haidar
-                    </td>
-                    <td>
-                        17
+                    <td id="1-points">
+                        0
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        Haidar
+                    <td id="2">
+                        ---
                     </td>
-                    <td>
-                        17
+                    <td id="2-points">
+                        0
+                    </td>
+                </tr>
+                <tr>
+                    <td id="3">
+                        ---
+                    </td>
+                    <td id="3-points">
+                        0
+                    </td>
+                </tr>
+                <tr>
+                    <td id="4">
+                        ---
+                    </td>
+                    <td id="4-points">
+                        0
                     </td>
                 </tr>
             </table>

@@ -19,35 +19,6 @@ function resetGame(){
     shuffle();
 }
 
-function flipCard() {
-  if (lockBoard || this === firstC){
-    return;
-  }
-  
-  this.classList.add('flip');
-
-  if (!hasFlippedCard) {
-    hasFlippedCard = true;
-    firstC = this;
-
-    
-  } else{
-    secondC = this;
-
-  if(firstC.dataset.logo === secondC.dataset.logo){
-
-    disableCards();
-    counter += 1;
-    document.getElementById("contador").innerHTML = "Contador: " + counter; 
-    }
-
-  else {
-    unflipCards();
-  }
-  }
-
-}
-
 function disableCards() {
   firstC.removeEventListener('click', flipCard);
   secondC.removeEventListener('click', flipCard);

@@ -13,20 +13,21 @@ body {
 }
 .Cabecera{
     background-color: #1a202c;
-    height:200px;
+    height:20%;
     border-color: yellow;
     border-style: solid;
     border-top: 0px;
     border-right: 0px;
     border-left: 0px;
+    margin-bottom: 5px;
 }
 #Titulo_Principal{
     padding-top: 60px;
-    font-size: xx-large;
+    font-size: 6vw;
     color:rgb(255, 255, 255);
     justify-content: center;
+    text-align: center;
     display: flex;
-    background-color:#1a202c;
     margin-bottom: 15px;
 }
 
@@ -34,7 +35,7 @@ body {
     color:rgb(255, 255, 255);
     justify-content: center;
     display: flex;
-    background-color:#1a202c;
+    text-align: center;
     padding-bottom: 15px;
 }
 
@@ -53,7 +54,7 @@ body {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 1vw;
     font-weight: 300;
     margin-bottom: 20px;
 }
@@ -69,7 +70,7 @@ body {
     border-radius: 5px;
     padding: 10px 10px 10px 10px;
     color: #000000;
-    font-size: 1rem;
+    font-size: 1vw;
     cursor: pointer;
     transition: 0.3s;
 }
@@ -80,50 +81,40 @@ body {
 
 }
 
-#Caja {
-    display:flex;
-    align-self: center;
-    justify-self: center;
-    width:30px;
-    height:30px;
-    background-color: black;
-    margin-bottom: 15px;
-    margin-top: 15px;
-}
-
 .memory-game {
-    margin-top: 100px;
     width: 100%;
-    height: 1000px;
+    height: 100vh;
     margin-top:15px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     perspective: 1000px;
 
-    
 }
 
 h2 {
     color:white;
+    margin-top: 20px;
     margin-bottom: 15px;
+    font-size: 2.5vw;
 }
 #contador{
     margin-top: 20px;
-    font-size:xx-large;
+    font-size:2.2vw;
     background-color: #f3fc7b;
     border-style: solid;
     border-color:rgb(255, 255, 0);
     display: flex;
     justify-content: center;
-    width: 100%;
+    max-width: 100%;
+    height:auto;
     border-radius: 5px;
 
 }
 
 #Timer {
     margin-top: 20px;
-    font-size:xx-large;
+    font-size:2.2vw;
     background-color: #f3fc7b;
     display: flex;
     border-style: solid;
@@ -143,11 +134,11 @@ h2 {
     align-items: center;
     background-color: #1a202c;
     margin-top: 20px;
-    width: 50%;
+    width: 55%;
     border-radius: 10px;
     border-color: yellow;
     border-style: solid;
-    height: 55%;
+    height: 56%;
 
 }
 
@@ -160,8 +151,8 @@ h2 {
     justify-content: center;
 }
 .memory-card {
-    width: calc(20%);
-    height: calc(25% - 10px);
+    width: 20%;
+    height: calc(25%-10px);
     margin: 5px;
     position: relative;
     transform: scale(1);
@@ -199,12 +190,14 @@ h2 {
     align-self: center;
     justify-content: center;
     color:white;
+    font-size: 2vw;
 }
 
 #restartButton {
     margin-top: 20px;
     margin-bottom: 10px;
-    width:100%;
+    max-width:100%;
+    min-width: 90%;
 }
 
 .LeaderBoard {
@@ -219,6 +212,7 @@ table, th, td {
     border-style: solid;
     border-color: yellow;
     color: rgb(255, 255, 255);
+    font-size: 1.5vw;
     align-self: center;
     background-color: #1a202c;
 }
@@ -235,7 +229,8 @@ table, th, td {
     justify-items: center;
     justify-content: center;
     margin:auto;
-    min-width: 100px;
+    width: 30vw;
+    min-width: 10vw;
 }
 
 th , td {

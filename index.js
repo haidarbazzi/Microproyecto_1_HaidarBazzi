@@ -6,8 +6,7 @@ const namesBef = [];
 const namesAft = [];
 
 /* Declaracion de variables */
-let tableBefore = "";
-let tableAfter = "";
+let tableBefore = "", tableAfter = "";
 let encabezadoTabla =`<tr>
 <th>
     Numero
@@ -20,7 +19,7 @@ let encabezadoTabla =`<tr>
 </th>
 </tr>`
 
-let hasFlippedCard = false , lockBoard = false, hasEnteredName = false, seReinicio = false;
+let hasFlippedCard = false , lockBoard = false, hasEnteredName = false
 let firstC, secondC, intervalo, currentPlayer; 
 let counter = 0, minutes = 0, seconds = 0, secondsTakenByPlayer = 0;
 const totalSeconds = 180;
@@ -30,6 +29,7 @@ function FinishResults(){
     clearInterval(intervalo);
     alreadyStored = false;
     let points = calculatePoints();
+    SetCurrentScore(currentPlayer, points);
     localStorage.setItem(currentPlayer, points);
     retrieveInfo(namesAft, tableAfter);
     lockGame=true;
@@ -74,9 +74,9 @@ function retrieveInfo(names, tabla){
         for(let i =0;i<10;i++){
             let x=i+1;
             let row = `<tr>
-                            <td>${x}</td>
-                            <td>${names[i].name}</td>
-                            <td>${names[i].puntaje}</td>
+                            <td><b>${x}</b></td>
+                            <td><b>${names[i].name}</b></td>
+                            <td><b>${names[i].puntaje}</b></td>
                        </tr>`
             tabla += row;
     }
@@ -94,7 +94,6 @@ function calculatePoints(){
 }
 
 function actualizarTimer(){
-    if (!seReinicio){
         secondsTakenByPlayer += 1;
         seconds +=1;
         if (seconds>59){
@@ -112,7 +111,6 @@ function actualizarTimer(){
         if (secondsTakenByPlayer > 179 && alreadyStored){
             FinishResults();
         }
-    }
 }
 
 function timer() {
@@ -144,17 +142,6 @@ button.addEventListener('click', () => {
     
 })
 
-restart.addEventListener('click', ()=>{
-    seReinicio = true;
-    secondsTakenByPlayer=0;
-    seconds=0;
-    minutes=0;
-    counter =0;
-    resetBoard();
-    seReinicio = false;
-    
-})
-
 function flipCard() {
     if (!lockGame){
   if (lockBoard || this === firstC){
@@ -175,7 +162,7 @@ function flipCard() {
 
     disableCards();
     counter += 1;
-    document.getElementById("contador").innerHTML = "Puntaje: " + counter; 
+    document.getElementById("contador").innerHTML = "Pares Hallados: " + counter; 
     }
 
   else {
@@ -200,6 +187,17 @@ function unflipCards() {
 
     resetBoard();
   }, 1500);
+}
+
+function SetCurrentScore(current, points){
+    let actual = document.getElementById('UsuarioActual');
+    actual.innerHTML += `<td>
+                            <b>${current}</b>
+                          </td>`;
+    actual.innerHTML += `<td>
+                            <b>${points}</b>
+                          </td>`;
+    
 }
 
 function resetBoard() {

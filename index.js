@@ -19,11 +19,11 @@ let encabezadoTabla =`<tr>
 </th>
 </tr>`
 
-let hasFlippedCard = false , lockBoard = false, hasEnteredName = false
+let hasFlippedCard = false , lockBoard = false, hasEnteredName = false;
 let firstC, secondC, intervalo, currentPlayer; 
 let counter = 0, minutes = 0, seconds = 0, secondsTakenByPlayer = 0;
 const totalSeconds = 180;
-let alreadyStored = true, lockGame = true;
+let alreadyStored = true, lockGame = true, WasClicked = true;
 
 function FinishResults(){
     clearInterval(intervalo);
@@ -133,12 +133,17 @@ function timer() {
   }());
 
 button.addEventListener('click', () => {
+    if(WasClicked){
     currentPlayer = input.value;
     if (!(typeof input.value === 'string' && input.value.length === 0)){
         document.getElementById('CuentaRegresiva').innerHTML = 'Su juego empieza ahora!';
         lockGame = false;
+        WasClicked = false;
         timer();
     }
+    }
+    
+    
     
 })
 

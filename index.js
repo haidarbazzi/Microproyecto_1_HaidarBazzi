@@ -5,44 +5,41 @@ const restart = document.getElementById('restartButton');
 const namesBef = [];
 const namesAft = [];
 
-
-let minutes = 0;
-let seconds = 0;
-
 /* Declaracion de variables */
+let tableBefore = "";
+let tableAfter = "";
+let encabezadoTabla =`<tr>
+<th>
+    Numero
+</th>
+<th>
+    Nombre
+</th>
+<th>
+    Puntaje
+</th>
+</tr>`
 
-let intervalo;
-let hasFlippedCard = false; 
-let lockBoard = false; 
-let firstC, secondC; 
-let counter = 0; 
-let currentPlayer;
-let hasEnteredName = false;
-let secondsTakenByPlayer = 0;
+let hasFlippedCard = false , lockBoard = false, hasEnteredName = false, seReinicio = false;
+let firstC, secondC, intervalo, currentPlayer; 
+let counter = 0, minutes = 0, seconds = 0, secondsTakenByPlayer = 0;
 const totalSeconds = 180;
-let alreadyStored = true;
-let seReinicio = false;
-let lockGame = true;
-
+let alreadyStored = true, lockGame = true;
 
 function FinishResults(){
     clearInterval(intervalo);
     alreadyStored = false;
     let points = calculatePoints();
     localStorage.setItem(currentPlayer, points);
-    retrieveInfo(namesAft);
+    retrieveInfo(namesAft, tableAfter);
     lockGame=true;
 }
-
 
 function BubbleSort(arr){
 
     for(let i = 0; i < arr.length; i++){
-
         for(let j = 0; j < arr.length - i - 1; j++){
-
             if(arr[j + 1].puntaje > arr[j].puntaje){
-
                 [arr[j + 1],arr[j]] = [arr[j],arr[j + 1]]
             }
         }
@@ -50,7 +47,8 @@ function BubbleSort(arr){
     return arr;
 };
 
-function retrieveInfo(names){
+function retrieveInfo(names, tabla){
+    
     for (i = 0; i <localStorage.length ; i++){
         let key = localStorage.key(i);
         let value = localStorage.getItem(key);
@@ -59,31 +57,43 @@ function retrieveInfo(names){
 
     }
     names = BubbleSort(names);
-    if(names.length < 6){
-    for(i = 0; i<names.length;i++){
-        document.getElementById(i).innerHTML = names[i].name;
-        document.getElementById(i+"-points").innerHTML = names[i].puntaje
+    let table = document.getElementById('TablaP');
+    tabla += encabezadoTabla;
+    if(names.length < 11){
+
+    for(let i = 0;i < names.length;i++){
+        let x = i+1;
+        let row = `<tr>
+                        <td><b>${x}</b></td>
+                        <td><b>${names[i].name}</b></td>
+                        <td><b>${names[i].puntaje}</b></td>
+                   </tr>`
+        tabla += row;
     }
     } else{
-        for(i = 0; i < 5;i++){
-            document.getElementById(i).innerHTML = names[i].name;
-            document.getElementById(i+"-points").innerHTML = names[i].puntaje
+        for(let i =0;i<10;i++){
+            let x=i+1;
+            let row = `<tr>
+                            <td>${x}</td>
+                            <td>${names[i].name}</td>
+                            <td>${names[i].puntaje}</td>
+                       </tr>`
+            tabla += row;
     }
     }
-    names = [];
+    table.innerHTML = tabla;
 }
 
-retrieveInfo(namesBef)
-console.log(localStorage)
+retrieveInfo(namesBef, tableBefore);
 
 function calculatePoints(){
     let timeLeft = 180 - secondsTakenByPlayer;
     let points = 8*(timeLeft/totalSeconds);
+    points = Math.round((points + Number.EPSILON) * 100) / 100
     return points;
 }
 
 function actualizarTimer(){
-
     if (!seReinicio){
         secondsTakenByPlayer += 1;
         seconds +=1;
@@ -103,7 +113,6 @@ function actualizarTimer(){
             FinishResults();
         }
     }
-    
 }
 
 function timer() {
@@ -127,12 +136,11 @@ function timer() {
 
 button.addEventListener('click', () => {
     currentPlayer = input.value;
-    if (input != ""){
+    if (!(typeof input.value === 'string' && input.value.length === 0)){
+        document.getElementById('CuentaRegresiva').innerHTML = 'Su juego empieza ahora!';
         lockGame = false;
         timer();
     }
-    document.getElementById('CuentaRegresiva').innerHTML = 'Su juego empieza ahora!';
-
     
 })
 
@@ -175,7 +183,6 @@ function flipCard() {
   }
   }
 }
-
 }
 
 function disableCards() {
@@ -195,14 +202,12 @@ function unflipCards() {
   }, 1500);
 }
 
-
 function resetBoard() {
   hasFlippedCard = false;
   lockBoard = false;
   firstC = null;
   secondC = null;
 }
-
 
 cards.forEach(card => card.addEventListener('click', flipCard));
 
